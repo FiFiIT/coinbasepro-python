@@ -48,6 +48,8 @@ class PublicClient(object):
 
         """
         return self._send_message('get', '/products')
+    def get_product(self, product_id):
+        return self._send_message('get', '/product/' + product_id)
 
     def get_product_order_book(self, product_id, level=1):
         """Get a list of open orders for a product.
@@ -191,8 +193,8 @@ class PublicClient(object):
         if granularity is not None:
             acceptedGrans = [60, 300, 900, 3600, 21600, 86400]
             if granularity not in acceptedGrans:
-                raise ValueError( 'Specified granularity is {}, must be in approved values: {}'.format(
-                        granularity, acceptedGrans) )
+                raise ValueError('Specified granularity is {}, must be in approved values: {}'.format(
+                    granularity, acceptedGrans))
 
             params['granularity'] = granularity
         return self._send_message('get',
@@ -296,7 +298,8 @@ class PublicClient(object):
             params = dict()
         url = self.url + endpoint
         while True:
-            r = self.session.get(url, params=params, auth=self.auth, timeout=30)
+            r = self.session.get(url, params=params,
+                                 auth=self.auth, timeout=30)
             results = r.json()
             for result in results:
                 yield result

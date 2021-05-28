@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 install_requires = [
     'sortedcontainers>=1.5.9',
     'requests>=2.13.0',
-    'six>=1.10.0',
+    'six>=1.12.0',
     'websocket-client>=0.40.0',
     'pymongo>=3.5.1',
 ]
@@ -13,7 +13,7 @@ install_requires = [
 tests_require = [
     'pytest',
     'python-dateutil>=2.7.5',
-    ]
+]
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
